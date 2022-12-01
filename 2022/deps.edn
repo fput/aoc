@@ -1,0 +1,15 @@
+{:aliases {:perf
+           {:jvm-opts ["-Djdk.attach.allowAttachSelf"]
+            :deps
+            {com.clojure-goes-fast/clj-async-profiler {:mvn/version "1.0.3"}
+             criterium/criterium {:mvn/version "0.4.6"}}}
+           :native-image
+           {:main-opts ["-m" "clj.native-image" "challenge"
+                        "--initialize-at-build-time"
+                        ;; optional native image name override
+                        "-H:Name=challenge"]
+            :jvm-opts ["-Dclojure.compiler.direct-linking=true"]
+            :extra-deps
+            {clj.native-image/clj.native-image
+             {:git/url "https://github.com/taylorwood/clj.native-image.git"
+              :sha "7708e7fd4572459c81f6a6b8e44c96f41cdd92d4"}}}}}

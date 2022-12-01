@@ -9,4 +9,24 @@ Icon
 # Thumbnails
 ._*
 
+### Clojure ###
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/lib/
+/classes/
+/target/
+/checkouts/
+.lein-deps-sum
+.lein-repl-history
+.lein-plugins/
+.lein-failures
+.nrepl-port
+.cpcache/
+.calva
+.nrepl-port
+.lsp
+.clj-kondo
+
 scratch
