@@ -1,0 +1,19 @@
+[workspace]
+resolver = "2"
+members = [
+    "util",
+    "01",
+]
+
+[profile.profiling]
+inherits = "release"
+debug = true
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+
+[workspace.dependencies]
+util = { path = "util" }
+itertools = "0.13.0"
+rustc-hash = "2.1.0"

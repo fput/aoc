@@ -29,4 +29,10 @@ pom.xml.asc
 .lsp
 .clj-kondo
 
+# Rust
+debug/
+target/
+Cargo.lock
+**/*.rs.bk
+
 scratch
