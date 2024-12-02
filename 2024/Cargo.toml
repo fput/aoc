@@ -3,6 +3,7 @@ resolver = "2"
 members = [
     "util",
     "01",
+    "02",
 ]
 
 [profile.profiling]
