@@ -4,6 +4,7 @@ members = [
     "util",
     "01",
     "02",
+    "03",
 ]
 
 [profile.profiling]
