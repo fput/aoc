@@ -13,6 +13,59 @@ pub const SOUTHWEST: Point = Point::new(-1, 1);
 pub const NORTHEAST: Point = Point::new(1, -1);
 pub const NORTHWEST: Point = Point::new(-1, -1);
 
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub enum Direction {
+    Up,
+    Right,
+    Down,
+    Left,
+}
+
+impl Direction {
+    pub const VALUES: [Self; 4] = [Self::Up, Self::Right, Self::Down, Self::Left];
+
+    #[inline] #[must_use]
+    pub fn to_index(self) -> usize {
+        match self {
+            Direction::Up => 0,
+            Direction::Right => 1,
+            Direction::Down => 2,
+            Direction::Left => 3,
+        }
+    }
+
+    #[inline] #[must_use]
+    pub fn to_point(self) -> Point {
+        match self {
+            Direction::Up => UP,
+            Direction::Right => RIGHT,
+            Direction::Down => DOWN,
+            Direction::Left => LEFT,
+        }
+    }
+
+    #[inline] #[must_use]
+    pub fn clockwise(self) -> Self {
+        match self {
+            Direction::Up => Direction::Right,
+            Direction::Right => Direction::Down,
+            Direction::Down => Direction::Left,
+            Direction::Left => Direction::Up,
+        }
+    }
+
+    #[inline] #[must_use]
+    pub fn counterwise(self) -> Self {
+        match self {
+            Direction::Up => Direction::Left,
+            Direction::Right => Direction::Up,
+            Direction::Down => Direction::Right,
+            Direction::Left => Direction::Down,
+        }
+    }
+}
+
+
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct Point {pub x: i32, pub y: i32}
 
