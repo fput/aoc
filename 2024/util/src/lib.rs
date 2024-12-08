@@ -215,6 +215,18 @@ impl<T> Matrix<T> {
         coord.x >= 0 && coord.x < self.width && coord.y >= 0 && coord.y < self.height
     }
 }
+
+impl<T: PartialEq> Matrix<T> {
+    #[inline]
+    pub fn update(&mut self, coord: Point, value: T) -> bool {
+        if self[coord] != value {
+            self[coord] = value;
+            return true;
+        }
+        return false;
+    }
+}
+
 impl<T: Copy> Matrix<T> {
     pub fn new(width: i32, height: i32, fill: T) -> Matrix<T> {
         Matrix { width, height, elements: vec![fill; (width*height) as usize] }
