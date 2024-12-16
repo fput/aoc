@@ -1,5 +1,6 @@
 use std::ops::{Index, IndexMut, Add, AddAssign, Mul, MulAssign, Sub, SubAssign, Neg};
 use std::str::{Bytes, FromStr};
+use std::cmp::Ordering;
 use std::marker::PhantomData;
 use std::hash::Hash;
 
@@ -391,3 +392,24 @@ where
     SignedNumberExtractor { bytes: input.bytes(), _marker: PhantomData }
 }
 
+
+/// A generic wrapper that turns a `BinaryHeap` (which is max-heap by default)
+/// into a min-heap for any key type `K: Ord`.
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub struct MinHeapEntry<K: Ord, D> {
+    pub key: K,
+    pub data: D,
+}
+
+impl<K: Ord, D: Eq> Ord for MinHeapEntry<K, D> {
+    fn cmp(&self, other: &Self) -> Ordering {
+        // Reverse the order of keys to achieve a min-heap
+        other.key.cmp(&self.key)
+    }
+}
+
+impl<K: Ord, D: Eq> PartialOrd for MinHeapEntry<K, D> {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
