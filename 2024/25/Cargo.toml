@@ -1,0 +1,13 @@
+[package]
+name = "day25"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "challenge"
+path = "src/main.rs"
+
+[dependencies]
+util.workspace = true
+itertools.workspace = true
+rustc-hash.workspace = true
